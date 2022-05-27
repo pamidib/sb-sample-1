@@ -8,5 +8,10 @@ pipeline {
 	        
 	      }
 	    }
+	    stage("Docker image Build") {
+	      steps {
+	          sh "echo 'Build in progress'"
+	        
+	      }
 	  }
 }
