@@ -8,11 +8,22 @@ pipeline {
 	        
 	      }
 	    }
-	    stage("Docker image Build") {
+	  stage("Build testing") {
 	      steps {
-	          sh "echo 'Build in progress'"
+	          sh "mvn test"
+	      }
+	    }
+	   stage("Docker image Build") {
+	      steps {
+	          sh "docker build --no-cache -t myimage:1.0 ."
 	        
 	      }
-	  }
+	    }
+	     stage("Docker container running") {
+	      steps {
+	          sh "docker rm -f build_jar"
+	          sh "docker run -dit --name=build_jar myimage:1.0 /bin/bash"
+	      }
+	    }
 	  }
 }
