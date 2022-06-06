@@ -22,7 +22,7 @@ pipeline {
 	     stage("Docker container running") {
 	      steps {
 	          sh "docker rm -f build_jar"
-	          sh "docker run -dit --name=build_jar myimage:1.0 /bin/bash"
+	          sh "docker run -dit --name=build_jar -p 5001:8080 myimage:1.0 /bin/bash"
 	      }
 	    }
 	  }
